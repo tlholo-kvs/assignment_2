@@ -13,7 +13,11 @@ class RegisterPage extends StatelessWidget {
         ),
         body: Stack(
           children: const [
-            Center(child: SingleChildScrollView(child: RegisterForm())),
+            Center(
+              child: SingleChildScrollView(
+                child: RegisterForm(),
+              ),
+            ),
           ],
         ));
   }
