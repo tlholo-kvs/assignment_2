@@ -1,9 +1,16 @@
+import 'package:assignment2_2022/services/locator_service.dart';
+
+import '../services/navigation_and_dialog_service.dart';
+
 String? validateEmail(String? value) {
   String message = '';
   RegExp emailPattern = RegExp(r'^[^@]+@[^@]+\.[^@]+');
 
   if (!emailPattern.hasMatch(value!)) {
-    message = 'Email invalid! Please enter valid email, e.g example@site.com';
+    locator.get<NavigationAndDialogService>().showSnackBar(
+        message:
+            'Email invalid! Please enter valid email, e.g example@site.com',
+        title: 'Email Error');
   } else {
     message = '';
   }
@@ -22,10 +29,16 @@ String? validatePassword(String? value) {
     uppercase letter, at least one lower case letter, one digit and at least 
     one special character!
      ''';
+    locator
+        .get<NavigationAndDialogService>()
+        .showSnackBar(message: message, title: 'Password Error');
   }
   //testing seperately for the password length
   if (value.length < 8) {
     message = 'Please make sure your password is at least 8 characters long!';
+    locator
+        .get<NavigationAndDialogService>()
+        .showSnackBar(message: message, title: 'Password error');
   } else {
     message = '';
   }
