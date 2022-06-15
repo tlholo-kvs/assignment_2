@@ -46,9 +46,44 @@ String? validatePassword(String? value) {
 }
 
 String? validateEmptyTitle(String? value) {
-  return null;
+  String message = 'Please enter the title of the note before trying to save';
+
+  if (value != null) {
+    if (value.isEmpty) {
+      locator.get<NavigationAndDialogService>().showSnackBar(
+            message: message,
+            title: 'Empty title',
+          );
+    } else {
+      message = '';
+    }
+  } else {
+    locator.get<NavigationAndDialogService>().showSnackBar(
+          message: 'Value is null...',
+          title: 'Null title',
+        );
+  }
+
+  return message;
 }
 
 String? validateEmptyMessage(String? value) {
-  return null;
+  String message = '';
+
+  if (value != null) {
+    if (value.isEmpty) {
+      locator.get<NavigationAndDialogService>().showSnackBar(
+            message: message,
+            title: 'Empty message',
+          );
+    } else {
+      message = '';
+    }
+  } else {
+    locator.get<NavigationAndDialogService>().showSnackBar(
+          message: 'Value is null...',
+          title: 'Null message',
+        );
+  }
+  return message;
 }
