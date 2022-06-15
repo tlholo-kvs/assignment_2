@@ -16,32 +16,36 @@ class _NoteListPageState extends State<NoteListPage>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          actions: [
-            IconButton(
-              onPressed: () {},
-              icon: const Icon(Icons.lock),
-            ),
-            IconButton(
-              onPressed: () {
-                locator
-                    .get<NavigationAndDialogService>()
-                    .navigateTo(RouteManager.noteCreatePage);
-              },
-              icon: const Icon(Icons.add),
-            ),
-          ],
-          automaticallyImplyLeading: false,
-          title: const Text('List of Notes'),
-        ),
-        body: ListView.builder(
-          itemCount: 2,
-          itemBuilder: (context, index) {
-            return ListTile(
-              onTap: () {},
-              title: const Text('Title'),
-            );
-          },
-        ));
+      appBar: AppBar(
+        actions: [
+          IconButton(
+            onPressed: () {},
+            icon: const Icon(Icons.lock),
+          ),
+          IconButton(
+            onPressed: () {
+              locator
+                  .get<NavigationAndDialogService>()
+                  .navigateTo(RouteManager.noteCreatePage);
+            },
+            icon: const Icon(Icons.add),
+          ),
+        ],
+        automaticallyImplyLeading: false,
+        title: const Text('List of Notes'),
+      ),
+      body: ListView.builder(
+        itemCount: 2,
+        itemBuilder: (context, index) {
+          return ListTile(
+            onTap: () {
+              //I wonder if this should be the flow
+              Navigator.popAndPushNamed(context, RouteManager.noteViewPage);
+            },
+            title: const Text('Title'),
+          );
+        },
+      ),
+    );
   }
 }

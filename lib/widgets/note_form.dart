@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
 import '../miscellaneous/constants.dart';
 import '../miscellaneous/validators.dart';
 import '../view_models/note_view_model.dart';
+import '../view_models/user_management_view_model.dart';
 
 class NoteForm extends StatefulWidget {
   const NoteForm({
@@ -65,7 +65,14 @@ class _NoteFormState extends State<NoteForm> {
               style: ElevatedButton.styleFrom(
                 minimumSize: const Size.fromHeight(40),
               ),
-              onPressed: () {},
+              onPressed: () {
+                context.read<NoteViewModel>().saveNewNote(
+                      context.read<UserManagementViewModel>().currentUser!.email,
+                      messageController.text,
+                      titleController.text,
+                      true,
+                    );
+              },
               child: const Text('Save Note'),
             ),
           ],
