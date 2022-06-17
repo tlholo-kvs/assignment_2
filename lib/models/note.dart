@@ -1,12 +1,10 @@
 class Note {
   final String title;
   final String message;
-  final String emailAddress;
 
   const Note({
     required this.title,
     required this.message,
-    required this.emailAddress,
   });
 
   Map<String, Object?> toJson() => {
@@ -17,7 +15,6 @@ class Note {
   static Note fromJson(Map<dynamic, dynamic>? json) => Note(
         title: json!['title'] as String,
         message: json['message'] as String,
-        emailAddress: json['emailAddress'],
       );
 
   @override

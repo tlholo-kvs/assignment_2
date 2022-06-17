@@ -4,6 +4,7 @@ import '../services/navigation_and_dialog_service.dart';
 
 String? validateEmail(String? value) {
   String message = '';
+  //Regax For The Email
   RegExp emailPattern = RegExp(r'^[^@]+@[^@]+\.[^@]+');
 
   if (!emailPattern.hasMatch(value!)) {
@@ -20,7 +21,7 @@ String? validateEmail(String? value) {
 
 String? validatePassword(String? value) {
   String message = '';
-  //Rejex for password format
+  //Regax For Password
   RegExp passwordPattern =
       RegExp(r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~])');
 
@@ -33,7 +34,7 @@ String? validatePassword(String? value) {
         .get<NavigationAndDialogService>()
         .showSnackBar(message: message, title: 'Password Error');
   }
-  //testing seperately for the password length
+  //Testing Seperately For The Password Length
   if (value.length < 8) {
     message = 'Please make sure your password is at least 8 characters long!';
     locator

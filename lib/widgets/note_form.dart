@@ -67,7 +67,10 @@ class _NoteFormState extends State<NoteForm> {
               ),
               onPressed: () {
                 context.read<NoteViewModel>().saveNewNote(
-                      context.read<UserManagementViewModel>().currentUser!.email,
+                      context
+                          .read<UserManagementViewModel>()
+                          .currentUser!
+                          .email,
                       messageController.text,
                       titleController.text,
                       true,

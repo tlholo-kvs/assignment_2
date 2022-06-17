@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import '../routes/route_manager.dart';
 import '../services/locator_service.dart';
 import '../services/navigation_and_dialog_service.dart';

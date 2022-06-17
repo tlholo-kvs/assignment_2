@@ -1,14 +1,14 @@
 class NoteEntry {
   Map<dynamic, dynamic> notes;
   String username;
-  String title;
-  String message;
+  String? title;
+  String? message;
 
   NoteEntry({
     required this.notes,
     required this.username,
-    required this.message,
-    required this.title,
+    this.message,
+    this.title,
   });
 
   Map<String, Object?> toJson() => {

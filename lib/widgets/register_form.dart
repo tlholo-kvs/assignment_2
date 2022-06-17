@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
 import '../miscellaneous/constants.dart';
 import '../miscellaneous/validators.dart';
 import '../view_models/user_management_view_model.dart';
@@ -72,10 +71,15 @@ class _RegisterFormState extends State<RegisterForm> {
               style: ElevatedButton.styleFrom(
                 minimumSize: const Size.fromHeight(40),
               ),
-              onPressed: () {},
+              onPressed: () {
+                context
+                    .read<UserManagementViewModel>()
+                    .checkIfUserExists(emailController.text.trim());
+              },
               child: const Text('Register'),
             ),
           ],
+         // Selector<UserManagementViewModel,bool>(selector: (context,value)=> value.existingUser,builder: (context,value,child){},)
         ),
       ),
     );

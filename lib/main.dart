@@ -1,3 +1,4 @@
+import 'package:assignment2_2022/services/locator_service.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'init.dart';
@@ -8,8 +9,8 @@ import 'view_models/user_management_view_model.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
-  InitApp.initializeApp();
-  //setupLocator();
+  InitApp.initializeApp;
+  setupLocator();
   runApp(const MyApp());
 }
 

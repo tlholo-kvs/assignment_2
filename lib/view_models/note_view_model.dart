@@ -92,4 +92,9 @@ class NoteViewModel with ChangeNotifier {
     }
     return result;
   }
+
+  void createNote(Note note) {
+    _notes.insert(0, note);
+    notifyListeners();
+  }
 }
