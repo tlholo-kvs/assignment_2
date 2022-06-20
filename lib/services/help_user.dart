@@ -7,18 +7,18 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../widgets/warning.dart';
 
-void createNewUserInUI(BuildContext context,
-    {required String email,
-    required String password,
-    required String name}) async {
+void createNewUserInUI(
+  BuildContext context, {
+  required String email,
+  required String password,
+}) async {
   FocusManager.instance.primaryFocus?.unfocus();
-  if (email.isEmpty || name.isEmpty || password.isEmpty) {
+  if (email.isEmpty || password.isEmpty) {
     showSnackBar(context, 'Enter All Fields!');
   } else {
     BackendlessUser user = BackendlessUser()
       ..email = email.trim()
-      ..password = password.trim()
-      ..putProperties({'name': name});
+      ..password = password.trim();
 
     String result =
         await context.read<UserManagementViewModel>().createNewUser(user);
@@ -59,7 +59,7 @@ void resetPasswordInUI(BuildContext context, {required String email}) async {
   final userVM = context.read<UserManagementViewModel>();
   if (email.isEmpty) {
     locator.get<NavigationAndDialogService>().showSnackBar(
-        message: 'Enter your email to which reset instructionsmust be sent',
+        message: 'Enter your email to which reset instructions must be sent',
         title: 'Error');
   } else {
     String response = await userVM.resetPassword(email.trim());

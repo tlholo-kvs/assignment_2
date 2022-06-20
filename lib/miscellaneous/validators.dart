@@ -21,7 +21,7 @@ String? validateEmail(String? value) {
 
 String? validatePassword(String? value) {
   String message = '';
-  //Regax For Password
+  //Regex For Password
   RegExp passwordPattern =
       RegExp(r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~])');
 

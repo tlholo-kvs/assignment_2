@@ -1,3 +1,4 @@
+import 'package:assignment2_2022/services/help_user.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -66,7 +67,13 @@ class _LoginFormState extends State<LoginForm> {
               style: ElevatedButton.styleFrom(
                 minimumSize: const Size.fromHeight(40),
               ),
-              onPressed: () {},
+              onPressed: () {
+                loginUserInUI(
+                  context,
+                  email: emailController.text,
+                  password: passwordController.text,
+                );
+              },
               child: const Text('Login'),
             ),
             ButtonBar(
@@ -89,7 +96,12 @@ class _LoginFormState extends State<LoginForm> {
                     primary: Colors.deepOrange,
                     minimumSize: const Size(140, 40),
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    resetPasswordInUI(
+                      context,
+                      email: emailController.text,
+                    );
+                  },
                   child: const Text('Reset Password'),
                 ),
               ],

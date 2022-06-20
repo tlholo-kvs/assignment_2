@@ -1,3 +1,4 @@
+import 'package:assignment2_2022/services/help_user.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../miscellaneous/constants.dart';
@@ -72,14 +73,16 @@ class _RegisterFormState extends State<RegisterForm> {
                 minimumSize: const Size.fromHeight(40),
               ),
               onPressed: () {
-                context
-                    .read<UserManagementViewModel>()
-                    .checkIfUserExists(emailController.text.trim());
+                createNewUserInUI(
+                  context,
+                  email: emailController.text,
+                  password: passwordController.text,
+                );
               },
               child: const Text('Register'),
             ),
           ],
-         // Selector<UserManagementViewModel,bool>(selector: (context,value)=> value.existingUser,builder: (context,value,child){},)
+          // Selector<UserManagementViewModel,bool>(selector: (context,value)=> value.existingUser,builder: (context,value,child){},)
         ),
       ),
     );

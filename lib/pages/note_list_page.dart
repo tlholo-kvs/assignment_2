@@ -1,3 +1,4 @@
+import 'package:assignment2_2022/services/help_user.dart';
 import 'package:flutter/material.dart';
 import '../routes/route_manager.dart';
 import '../services/locator_service.dart';
@@ -18,7 +19,9 @@ class _NoteListPageState extends State<NoteListPage>
       appBar: AppBar(
         actions: [
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              logoutUserInUI(context);
+            },
             icon: const Icon(Icons.lock),
           ),
           IconButton(

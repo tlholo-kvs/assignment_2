@@ -29,10 +29,9 @@ class MyApp extends StatelessWidget {
         ),
       ],
       child: MaterialApp(
-        navigatorKey: navigatorKey,
-        onGenerateRoute: RouteManager.onGenerateRoute,
-        initialRoute: RouteManager.loadingPage,
-      ),
+          navigatorKey: navigatorKey,
+          onGenerateRoute: RouteManager.onGenerateRoute,
+          initialRoute: RouteManager.loadingPage),
     );
   }
 }
