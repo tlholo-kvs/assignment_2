@@ -56,6 +56,22 @@ class _RegisterFormState extends State<RegisterForm> {
               decoration: formDecoration('Email', Icons.mail),
             ),
             const SizedBoxH10(),
+            Selector<UserManagementViewModel, bool>(
+              selector: (context, value) => value.existingUser,
+              builder: (context, value, child) {
+                return value
+                    ? const Padding(
+                        padding: EdgeInsets.only(top: 10, bottom: 10),
+                        child: Text(
+                          'Username exists. Please choose another one',
+                          style: TextStyle(
+                              color: Colors.red, fontWeight: FontWeight.bold),
+                        ),
+                      )
+                    : Container();
+              },
+            ),
+            const SizedBoxH10(),
             TextFormField(
               validator: validatePassword,
               controller: passwordController,
