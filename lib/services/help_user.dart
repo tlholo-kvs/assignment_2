@@ -80,6 +80,7 @@ void logoutUserInUI(BuildContext context) async {
 
   if (response == 'OK') {
     userVm.setCurrentUserToNull();
+
     locator
         .get<NavigationAndDialogService>()
         .popAndNavigateTo(RouteManager.loginPage);

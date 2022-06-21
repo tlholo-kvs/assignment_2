@@ -16,20 +16,18 @@ String? validatePassword(String? value) {
   String message = '';
   //Regex For Password
   RegExp passwordPattern =
-      RegExp(r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~])');
+      RegExp(r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$');
 
   if (!passwordPattern.hasMatch(value!)) {
-    message = '''Password format incorrect! Password should contain at least one
+    message =
+        '''Password format incorrect! Password should contain at least one
     uppercase letter, at least one lower case letter, one digit and at least 
-    one special character!
+    one special character! Length must also be 8 characters or more
      ''';
   }
-  //Testing Seperately For The Password Length
-  if (value.length < 8) {
-    message = 'Please make sure your password is at least 8 characters long!';
-  } else {
-    message = '';
-  }
+
+  //TODO: check for making sure that passwords match
+
   return message;
 }
 

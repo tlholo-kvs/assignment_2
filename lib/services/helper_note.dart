@@ -48,12 +48,14 @@ void createNewNoteInUI(BuildContext context,
     );
     if (nMv.notes.contains(note)) {
       locator.get<NavigationAndDialogService>().showSnackBar(
-          message: 'Duplicate values. Please check what you have typed!',
+          message:
+              'This is a duplicate entry. Please check what you have typed!',
           title: 'Error');
     } else {
       titleController.text = '';
       messageController.text = '';
       nMv.createNote(note);
+
       locator.get<NavigationAndDialogService>().goBack();
     }
   }
