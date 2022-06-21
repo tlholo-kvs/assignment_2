@@ -51,6 +51,7 @@ class _RegisterFormState extends State<RegisterForm> {
             ),
             const SizedBoxH30(),
             TextFormField(
+              autovalidateMode: AutovalidateMode.onUserInteraction,
               validator: validateEmail,
               controller: emailController,
               decoration: formDecoration('Email', Icons.mail),
@@ -73,12 +74,14 @@ class _RegisterFormState extends State<RegisterForm> {
             ),
             const SizedBoxH10(),
             TextFormField(
+              autovalidateMode: AutovalidateMode.onUserInteraction,
               validator: validatePassword,
               controller: passwordController,
               decoration: formDecoration('Password', Icons.lock),
             ),
             const SizedBoxH10(),
             TextFormField(
+              autovalidateMode: AutovalidateMode.onUserInteraction,
               validator: validatePassword,
               controller: retypePasswordController,
               decoration: formDecoration('Re-Type Password', Icons.lock),

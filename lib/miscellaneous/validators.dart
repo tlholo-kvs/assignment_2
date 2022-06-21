@@ -1,17 +1,10 @@
-import 'package:assignment2_2022/services/locator_service.dart';
-
-import '../services/navigation_and_dialog_service.dart';
-
 String? validateEmail(String? value) {
   String message = '';
-  //Regax For The Email
+  //Regex For The Email
   RegExp emailPattern = RegExp(r'^[^@]+@[^@]+\.[^@]+');
 
   if (!emailPattern.hasMatch(value!)) {
-    locator.get<NavigationAndDialogService>().showSnackBar(
-        message:
-            'Email invalid! Please enter valid email, e.g example@site.com',
-        title: 'Email Error');
+    message = 'Email invalid! Please enter valid email, e.g example@site.com';
   } else {
     message = '';
   }
@@ -30,16 +23,10 @@ String? validatePassword(String? value) {
     uppercase letter, at least one lower case letter, one digit and at least 
     one special character!
      ''';
-    locator
-        .get<NavigationAndDialogService>()
-        .showSnackBar(message: message, title: 'Password Error');
   }
   //Testing Seperately For The Password Length
   if (value.length < 8) {
     message = 'Please make sure your password is at least 8 characters long!';
-    locator
-        .get<NavigationAndDialogService>()
-        .showSnackBar(message: message, title: 'Password error');
   } else {
     message = '';
   }
@@ -51,18 +38,12 @@ String? validateEmptyTitle(String? value) {
 
   if (value != null) {
     if (value.isEmpty) {
-      locator.get<NavigationAndDialogService>().showSnackBar(
-            message: message,
-            title: 'Empty title',
-          );
+      message = message;
     } else {
       message = '';
     }
   } else {
-    locator.get<NavigationAndDialogService>().showSnackBar(
-          message: 'Value is null...',
-          title: 'Null title',
-        );
+    message = 'Value is null';
   }
 
   return message;
@@ -73,18 +54,12 @@ String? validateEmptyMessage(String? value) {
 
   if (value != null) {
     if (value.isEmpty) {
-      locator.get<NavigationAndDialogService>().showSnackBar(
-            message: message,
-            title: 'Empty message',
-          );
+      message = 'Please enter content';
     } else {
       message = '';
     }
   } else {
-    locator.get<NavigationAndDialogService>().showSnackBar(
-          message: 'Value is null...',
-          title: 'Null message',
-        );
+    message = 'Value is equal to null';
   }
   return message;
 }

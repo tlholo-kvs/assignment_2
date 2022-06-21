@@ -49,6 +49,7 @@ class _NoteFormState extends State<NoteForm> {
             const SizedBoxH30(),
             TextFormField(
               validator: validateEmptyTitle,
+              autovalidateMode: AutovalidateMode.onUserInteraction,
               controller: titleController,
               decoration: formDecoration('Title', Icons.book),
             ),
@@ -57,6 +58,7 @@ class _NoteFormState extends State<NoteForm> {
               maxLines: 6,
               minLines: 3,
               validator: validateEmptyMessage,
+              autovalidateMode: AutovalidateMode.onUserInteraction,
               controller: messageController,
               decoration: formDecoration('Content', Icons.message),
             ),
