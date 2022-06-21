@@ -30,7 +30,7 @@ void createNewUserInUI(
     } else {
       locator.get<NavigationAndDialogService>().showSnackBar(
           message: 'New User Successfully Created', title: 'Result');
-      locator<NavigationAndDialogService>().goBack();
+      locator<NavigationAndDialogService>().navigateTo(RouteManager.loginPage);
     }
   }
 }
