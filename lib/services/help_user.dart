@@ -46,9 +46,8 @@ Future<void> loginUserInUI(BuildContext context,
         .loginUser(email.trim(), password.trim());
 
     if (result != 'Ok') {
-      locator
-          .get<NavigationAndDialogService>()
-          .showSnackBar(message: result, title: 'Result');
+      locator.get<NavigationAndDialogService>().showSnackBar(
+          message: 'Logging you in. please wait', title: 'Result');
     } else {
       locator<NavigationAndDialogService>().goBack();
     }

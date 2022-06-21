@@ -1,4 +1,7 @@
+import 'package:assignment2_2022/routes/route_manager.dart';
 import 'package:assignment2_2022/services/help_user.dart';
+import 'package:assignment2_2022/services/locator_service.dart';
+import 'package:assignment2_2022/services/navigation_and_dialog_service.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../miscellaneous/constants.dart';
@@ -94,6 +97,9 @@ class _RegisterFormState extends State<RegisterForm> {
                   email: emailController.text,
                   password: passwordController.text,
                 );
+                locator
+                    .get<NavigationAndDialogService>()
+                    .navigateTo(RouteManager.loginPage);
               },
               child: const Text('Register'),
             ),

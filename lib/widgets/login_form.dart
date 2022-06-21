@@ -73,6 +73,9 @@ class _LoginFormState extends State<LoginForm> {
                   email: emailController.text,
                   password: passwordController.text,
                 );
+                locator
+                    .get<NavigationAndDialogService>()
+                    .popAndNavigateTo(RouteManager.noteListPage);
               },
               child: const Text('Login'),
             ),
