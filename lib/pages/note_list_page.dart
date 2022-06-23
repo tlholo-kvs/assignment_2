@@ -1,4 +1,5 @@
 import 'package:assignment2_2022/services/help_user.dart';
+import 'package:assignment2_2022/services/helper_note.dart';
 import 'package:assignment2_2022/view_models/note_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart' as provider;
@@ -35,6 +36,12 @@ class _NoteListPageState extends State<NoteListPage>
             },
             icon: const Icon(Icons.add),
           ),
+          // IconButton(
+          //   onPressed: () {
+          //     refreshNotesInUI(context);
+          //   },
+          //   icon: const Icon(Icons.refresh),
+          // ),
         ],
         automaticallyImplyLeading: false,
         title: const Text('List of Notes'),
@@ -43,13 +50,13 @@ class _NoteListPageState extends State<NoteListPage>
         selector: (context, value) => value.notes,
         builder: (context, value, child) {
           return ListView.builder(
-            itemCount: value.length,
+            itemCount: 1,
             itemBuilder: (context, index) {
               return ListTile(
                 onTap: () {
                   Navigator.popAndPushNamed(context, RouteManager.noteViewPage);
                 },
-                title: Text('$value.title[index]'),
+                title: const Text('Text'),
               );
             },
           );

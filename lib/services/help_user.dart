@@ -5,6 +5,7 @@ import 'package:assignment2_2022/view_models/user_management_view_model.dart';
 import 'package:backendless_sdk/backendless_sdk.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import '../view_models/note_view_model.dart';
 import '../widgets/warning.dart';
 
 void createNewUserInUI(
@@ -37,7 +38,9 @@ void createNewUserInUI(
 
 Future<void> loginUserInUI(BuildContext context,
     {required String email, required String password}) async {
-  FocusManager.instance.primaryFocus?.unfocus();
+  //Variable to hold my refernce to NoteViewModel
+  final nVm = context.read<NoteViewModel>();
+
   if (email.isEmpty || password.isEmpty) {
     showSnackBar(context, 'Enter All Fields!');
   } else {
@@ -45,11 +48,15 @@ Future<void> loginUserInUI(BuildContext context,
         .read<UserManagementViewModel>()
         .loginUser(email.trim(), password.trim());
 
-    if (result != 'Ok') {
-      locator.get<NavigationAndDialogService>().showSnackBar(
-          message: 'Logging you in. please wait', title: 'Result');
+    if (result != 'OK') {
+      locator
+          .get<NavigationAndDialogService>()
+          .showSnackBar(message: result, title: 'Result');
     } else {
-      locator<NavigationAndDialogService>().goBack();
+      nVm.getNotes(email);
+      locator
+          .get<NavigationAndDialogService>()
+          .popAndNavigateTo(RouteManager.noteListPage);
     }
   }
 }

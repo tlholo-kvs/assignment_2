@@ -1,4 +1,5 @@
 import 'package:assignment2_2022/models/note.dart';
+import 'package:assignment2_2022/routes/route_manager.dart';
 import 'package:assignment2_2022/services/locator_service.dart';
 import 'package:assignment2_2022/services/navigation_and_dialog_service.dart';
 import 'package:assignment2_2022/view_models/note_view_model.dart';
@@ -56,7 +57,9 @@ void createNewNoteInUI(BuildContext context,
       messageController.text = '';
       nMv.createNote(note);
 
-      locator.get<NavigationAndDialogService>().goBack();
+      locator
+          .get<NavigationAndDialogService>()
+          .navigateTo(RouteManager.noteListPage);
     }
   }
 }

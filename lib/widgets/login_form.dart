@@ -1,7 +1,6 @@
 import 'package:assignment2_2022/services/help_user.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
 import '../miscellaneous/constants.dart';
 import '../miscellaneous/validators.dart';
 import '../routes/route_manager.dart';
@@ -73,9 +72,6 @@ class _LoginFormState extends State<LoginForm> {
                   email: emailController.text,
                   password: passwordController.text,
                 );
-                locator
-                    .get<NavigationAndDialogService>()
-                    .popAndNavigateTo(RouteManager.noteListPage);
               },
               child: const Text('Login'),
             ),

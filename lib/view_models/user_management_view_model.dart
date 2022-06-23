@@ -21,17 +21,17 @@ class UserManagementViewModel with ChangeNotifier {
     notifyListeners();
   }
 
-  bool _displayUserProcessStatus = false;
-  bool get displayUserProcessStatus => _displayUserProcessStatus;
+  // bool _displayUserProcessStatus = false;
+  // bool get displayUserProcessStatus => _displayUserProcessStatus;
 
-  String _userProcessInfo = '';
-  String get userProcessInfo => _userProcessInfo;
+  // String _userProcessInfo = '';
+  // String get userProcessInfo => _userProcessInfo;
 
   Future<String> resetPassword(String username) async {
     String response = 'OK';
 
-    _displayUserProcessStatus = true;
-    _userProcessInfo = 'Sending password instructions...';
+    // _displayUserProcessStatus = true;
+    // _userProcessInfo = 'Sending password instructions...';
     notifyListeners();
 
     await Backendless.userService
@@ -40,26 +40,27 @@ class UserManagementViewModel with ChangeNotifier {
       response = getHumanReadableError(error.toString());
     });
 
-    _displayUserProcessStatus = false;
+    //_displayUserProcessStatus = false;
     return response;
   }
 
   Future<String> loginUser(String username, String password) async {
     String response = 'OK';
-    _displayUserProcessStatus = true;
-    _userProcessInfo = 'busy logging you in ......please wait';
+
+    //_displayUserProcessStatus = true;
+    //_userProcessInfo = 'busy logging you in ......please wait';
     notifyListeners();
+
     BackendlessUser? user = await Backendless.userService
         .login(username, password, true)
         .onError((error, stackTrace) {
       response = getHumanReadableError(error.toString());
-      return null;
     });
 
     if (user != null) {
       _currentUser = user;
     }
-    _displayUserProcessStatus = false;
+    //_displayUserProcessStatus = false;
     notifyListeners();
     return response;
   }
@@ -67,15 +68,15 @@ class UserManagementViewModel with ChangeNotifier {
   Future<String> logoutUser() async {
     String response = 'OK';
 
-    _displayUserProcessStatus = true;
-    _userProcessInfo = 'Logging out...';
+    //_displayUserProcessStatus = true;
+    //_userProcessInfo = 'Logging out...';
     notifyListeners();
 
     await Backendless.userService.logout().onError((error, stackTrace) {
       response = error.toString();
     });
 
-    _displayUserProcessStatus = false;
+    //_displayUserProcessStatus = false;
     notifyListeners();
     return response;
   }
@@ -87,7 +88,6 @@ class UserManagementViewModel with ChangeNotifier {
         .isValidLogin()
         .onError((error, stackTrace) {
       response = error.toString();
-      return null;
     });
 
     if (validLogin != null && validLogin) {
@@ -95,7 +95,6 @@ class UserManagementViewModel with ChangeNotifier {
           .loggedInUser()
           .onError((error, stackTrace) {
         response = error.toString();
-        return null;
       });
       if (currentUserObjectId != null) {
         Map<dynamic, dynamic>? mapOfCurrentUser = await Backendless.data
@@ -103,7 +102,6 @@ class UserManagementViewModel with ChangeNotifier {
             .findById(currentUserObjectId)
             .onError((error, stackTrace) {
           response = error.toString();
-          return null;
         });
         if (mapOfCurrentUser != null) {
           _currentUser = BackendlessUser.fromJson(mapOfCurrentUser);
@@ -139,8 +137,8 @@ class UserManagementViewModel with ChangeNotifier {
 
   Future<String> createNewUser(BackendlessUser user) async {
     String response = 'OK';
-    _displayUserProcessStatus = true;
-    _userProcessInfo = 'Busy Creating A new user please wait';
+    // _displayUserProcessStatus = true;
+    // _userProcessInfo = 'Busy Creating A new user please wait';
 
     try {
       await Backendless.userService.register(user);
@@ -150,12 +148,11 @@ class UserManagementViewModel with ChangeNotifier {
           .save(nothingOnEntry.toJson())
           .onError((error, stackTrace) {
         response = error.toString();
-        return null;
       });
     } catch (e) {
       response = getHumanReadableError(e.toString());
     }
-    _displayUserProcessStatus = false;
+    //_displayUserProcessStatus = false;
     notifyListeners();
 
     return response;

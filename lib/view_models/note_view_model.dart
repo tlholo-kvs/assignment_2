@@ -35,7 +35,6 @@ class NoteViewModel with ChangeNotifier {
         .find(queryBuilder)
         .onError((error, stackTrace) {
       result = error.toString();
-      return null;
     });
 
     if (result != 'OK') {
@@ -45,7 +44,7 @@ class NoteViewModel with ChangeNotifier {
     }
 
     if (map != null) {
-      if (map.isNotEmpty) {
+      if (map.length > 0) {
         _noteEntry = NoteEntry.fromJson(map.first);
         _notes = convertMapToNoteList(_noteEntry!.notes);
         notifyListeners();
@@ -84,7 +83,6 @@ class NoteViewModel with ChangeNotifier {
         .save(_noteEntry!.toJson())
         .onError((error, stackTrace) {
       result = error.toString();
-      return null;
     });
     if (inUI) {
       _uploading = false;
