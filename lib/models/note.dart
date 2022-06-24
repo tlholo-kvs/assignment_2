@@ -1,3 +1,19 @@
+Map<dynamic, dynamic> convertNoteListToMap(List<Note> notes) {
+  Map<dynamic, dynamic> map = {};
+  for (var i = 0; i < notes.length; i++) {
+    map.addAll({'$i': notes[i].toJson()});
+  }
+  return map;
+}
+
+List<Note> convertMapToNoteList(Map<dynamic, dynamic> map) {
+  List<Note> notes = [];
+  for (var i = 0; i < map.length; i++) {
+    notes.add(Note.fromJson(map['$i']));
+  }
+  return notes;
+}
+
 class Note {
   final String title;
   final String message;
@@ -26,20 +42,4 @@ class Note {
   int get hashCode {
     return title.hashCode;
   }
-}
-
-Map<dynamic, dynamic> convertNoteListToMap(List<Note> notes) {
-  Map<dynamic, dynamic> map = {};
-  for (var i = 0; i < notes.length; i++) {
-    map.addAll({'$i': notes[i].toJson()});
-  }
-  return map;
-}
-
-List<Note> convertMapToNoteList(Map<dynamic, dynamic> map) {
-  List<Note> notes = [];
-  for (var i = 0; i < map.length; i++) {
-    notes.add(Note.fromJson(map['$i']));
-  }
-  return notes;
 }

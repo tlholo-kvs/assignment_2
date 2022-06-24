@@ -52,12 +52,14 @@ class _LoginFormState extends State<LoginForm> {
             const SizedBoxH30(),
             TextFormField(
               validator: validateEmail,
+              autovalidateMode: AutovalidateMode.onUserInteraction,
               controller: emailController,
               decoration: formDecoration('Email', Icons.mail),
             ),
             const SizedBoxH10(),
             TextFormField(
               validator: validatePassword,
+              autovalidateMode: AutovalidateMode.onUserInteraction,
               controller: passwordController,
               decoration: formDecoration('Password', Icons.lock),
             ),

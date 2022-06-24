@@ -1,3 +1,4 @@
+import 'package:assignment2_2022/services/helper_note.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../miscellaneous/constants.dart';
@@ -68,15 +69,9 @@ class _NoteFormState extends State<NoteForm> {
                 minimumSize: const Size.fromHeight(40),
               ),
               onPressed: () {
-                context.read<NoteViewModel>().saveNewNote(
-                      context
-                          .read<UserManagementViewModel>()
-                          .currentUser!
-                          .email,
-                      messageController.text,
-                      titleController.text,
-                      true,
-                    );
+                createNewNoteInUI(context,
+                    titleController: titleController,
+                    messageController: messageController);
               },
               child: const Text('Save Note'),
             ),

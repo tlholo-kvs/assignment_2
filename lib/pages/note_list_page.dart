@@ -1,9 +1,7 @@
 import 'package:assignment2_2022/services/help_user.dart';
-import 'package:assignment2_2022/services/helper_note.dart';
 import 'package:assignment2_2022/view_models/note_view_model.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart' as provider;
-import '../models/note.dart';
+import 'package:provider/provider.dart';
 import '../routes/route_manager.dart';
 import '../services/locator_service.dart';
 import '../services/navigation_and_dialog_service.dart';
@@ -46,17 +44,16 @@ class _NoteListPageState extends State<NoteListPage>
         automaticallyImplyLeading: false,
         title: const Text('List of Notes'),
       ),
-      body: provider.Selector<NoteViewModel, List<Note>>(
-        selector: (context, value) => value.notes,
+      body: Consumer<NoteViewModel>(
         builder: (context, value, child) {
           return ListView.builder(
-            itemCount: 1,
+            itemCount: value.notes.length,
             itemBuilder: (context, index) {
               return ListTile(
                 onTap: () {
                   Navigator.popAndPushNamed(context, RouteManager.noteViewPage);
                 },
-                title: const Text('Text'),
+                title: Text(value.notes[index].title),
               );
             },
           );

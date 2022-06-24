@@ -1,16 +1,12 @@
 # assignment2_2022
 
-A new Flutter project.
+A simple note-taking app with Backendless capability.
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+Errors:
+* The app is not sending data to database, specifically notes that a user writes
+* The app is not reading notes from the Database
+* GlobalKey error - 'Duplicate GlobalKey detected' error on login
 
-A few resources to get you started if this is your first Flutter project:
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
