@@ -25,7 +25,7 @@ class NoteEntry {
         username: json!['username'] as String,
         message: json['message'] as String,
         title: json['title'] as String,
-        notes: json['notes'] as Map<dynamic, dynamic>,
+        notes: json['notes'],
         objectId: json['objectId'] as String,
       );
 }

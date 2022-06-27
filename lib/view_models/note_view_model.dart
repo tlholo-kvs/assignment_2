@@ -16,18 +16,11 @@ class NoteViewModel with ChangeNotifier {
     notifyListeners();
   }
 
-  // bool _downloading = false;
-  // bool _uploading = false;
-
-  //bool get downloading => _downloading;
-  //bool get uploading => _uploading;
-
   Future<String> getNotes(String username) async {
     String result = 'OK';
 
     DataQueryBuilder queryBuilder = DataQueryBuilder()
       ..whereClause = "username = '$username'";
-    //_downloading = true;
     notifyListeners();
 
     List<Map<dynamic, dynamic>?>? map = await Backendless.data
@@ -38,7 +31,6 @@ class NoteViewModel with ChangeNotifier {
     });
 
     if (result != 'OK') {
-      //_downloading = false;
       notifyListeners();
       return result;
     }
@@ -55,7 +47,6 @@ class NoteViewModel with ChangeNotifier {
       result = 'NOT OK';
     }
 
-    //_downloading = false;
     notifyListeners();
     return result;
   }
@@ -74,20 +65,14 @@ class NoteViewModel with ChangeNotifier {
     } else {
       _noteEntry!.notes = convertNoteListToMap(_notes);
     }
-    // if (inUI) {
-    //   _uploading = true;
-    //   notifyListeners();
-    // }
+
     await Backendless.data
         .of('Note')
         .save(_noteEntry!.toJson())
         .onError((error, stackTrace) {
       result = error.toString();
     });
-    // if (inUI) {
-    //   _uploading = false;
-    //   notifyListeners();
-    // }
+
     return result;
   }
 

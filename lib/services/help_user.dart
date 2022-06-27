@@ -38,7 +38,7 @@ void createNewUserInUI(
 
 Future<void> loginUserInUI(BuildContext context,
     {required String email, required String password}) async {
-  //Variable to hold my refernce to NoteViewModel
+  //Variable to hold my reference to NoteViewModel
   final nVm = context.read<NoteViewModel>();
 
   if (email.isEmpty || password.isEmpty) {

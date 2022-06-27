@@ -21,17 +21,9 @@ class UserManagementViewModel with ChangeNotifier {
     notifyListeners();
   }
 
-  // bool _displayUserProcessStatus = false;
-  // bool get displayUserProcessStatus => _displayUserProcessStatus;
-
-  // String _userProcessInfo = '';
-  // String get userProcessInfo => _userProcessInfo;
-
   Future<String> resetPassword(String username) async {
     String response = 'OK';
 
-    // _displayUserProcessStatus = true;
-    // _userProcessInfo = 'Sending password instructions...';
     notifyListeners();
 
     await Backendless.userService
@@ -40,15 +32,11 @@ class UserManagementViewModel with ChangeNotifier {
       response = getHumanReadableError(error.toString());
     });
 
-    //_displayUserProcessStatus = false;
     return response;
   }
 
   Future<String> loginUser(String username, String password) async {
     String response = 'OK';
-
-    //_displayUserProcessStatus = true;
-    //_userProcessInfo = 'busy logging you in ......please wait';
     notifyListeners();
 
     BackendlessUser? user = await Backendless.userService
@@ -60,7 +48,7 @@ class UserManagementViewModel with ChangeNotifier {
     if (user != null) {
       _currentUser = user;
     }
-    //_displayUserProcessStatus = false;
+
     notifyListeners();
     return response;
   }
@@ -68,15 +56,12 @@ class UserManagementViewModel with ChangeNotifier {
   Future<String> logoutUser() async {
     String response = 'OK';
 
-    //_displayUserProcessStatus = true;
-    //_userProcessInfo = 'Logging out...';
     notifyListeners();
 
     await Backendless.userService.logout().onError((error, stackTrace) {
       response = error.toString();
     });
 
-    //_displayUserProcessStatus = false;
     notifyListeners();
     return response;
   }
@@ -137,8 +122,6 @@ class UserManagementViewModel with ChangeNotifier {
 
   Future<String> createNewUser(BackendlessUser user) async {
     String response = 'OK';
-    // _displayUserProcessStatus = true;
-    // _userProcessInfo = 'Busy Creating A new user please wait';
 
     try {
       await Backendless.userService.register(user);
@@ -152,7 +135,7 @@ class UserManagementViewModel with ChangeNotifier {
     } catch (e) {
       response = getHumanReadableError(e.toString());
     }
-    //_displayUserProcessStatus = false;
+
     notifyListeners();
 
     return response;

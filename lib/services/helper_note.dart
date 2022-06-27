@@ -37,6 +37,7 @@ void createNewNoteInUI(BuildContext context,
   //the code clean
 
   final nMv = context.read<NoteViewModel>();
+  final uMv = context.read<UserManagementViewModel>();
 
   if (titleController.text.isEmpty && messageController.text.isEmpty) {
     locator.get<NavigationAndDialogService>().showSnackBar(
@@ -53,9 +54,18 @@ void createNewNoteInUI(BuildContext context,
               'This is a duplicate entry. Please check what you have typed!',
           title: 'Error');
     } else {
+      nMv.createNote(note);
+
+      //every note will be saved individually to the database
+      nMv.saveNewNote(
+        uMv.currentUser!.email,
+        messageController.text.trim(),
+        titleController.text.trim(),
+        true,
+      );
+
       titleController.text = '';
       messageController.text = '';
-      nMv.createNote(note);
 
       locator
           .get<NavigationAndDialogService>()

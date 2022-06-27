@@ -4,7 +4,6 @@ import 'package:provider/provider.dart';
 import '../miscellaneous/constants.dart';
 import '../miscellaneous/validators.dart';
 import '../view_models/note_view_model.dart';
-import '../view_models/user_management_view_model.dart';
 
 class NoteForm extends StatefulWidget {
   const NoteForm({
