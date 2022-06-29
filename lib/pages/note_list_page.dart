@@ -34,12 +34,6 @@ class _NoteListPageState extends State<NoteListPage>
             },
             icon: const Icon(Icons.add),
           ),
-          // IconButton(
-          //   onPressed: () {
-          //     refreshNotesInUI(context);
-          //   },
-          //   icon: const Icon(Icons.refresh),
-          // ),
         ],
         automaticallyImplyLeading: false,
         title: const Text('List of Notes'),

@@ -57,22 +57,6 @@ class _RegisterFormState extends State<RegisterForm> {
               decoration: formDecoration('Email', Icons.mail),
             ),
             const SizedBoxH10(),
-            Selector<UserManagementViewModel, bool>(
-              selector: (context, value) => value.existingUser,
-              builder: (context, value, child) {
-                return value
-                    ? const Padding(
-                        padding: EdgeInsets.only(top: 10, bottom: 10),
-                        child: Text(
-                          'Username exists. Please choose another one',
-                          style: TextStyle(
-                              color: Colors.red, fontWeight: FontWeight.bold),
-                        ),
-                      )
-                    : Container();
-              },
-            ),
-            const SizedBoxH10(),
             TextFormField(
               autovalidateMode: AutovalidateMode.onUserInteraction,
               validator: validatePassword,
@@ -82,7 +66,13 @@ class _RegisterFormState extends State<RegisterForm> {
             const SizedBoxH10(),
             TextFormField(
               autovalidateMode: AutovalidateMode.onUserInteraction,
-              validator: validatePassword,
+              validator: (value) {
+                if (passwordController.text != retypePasswordController.text) {
+                  return 'Passwords do not match. Please make sure passwords match.';
+                } else {
+                  return '';
+                }
+              },
               controller: retypePasswordController,
               decoration: formDecoration('Re-Type Password', Icons.lock),
             ),
@@ -101,7 +91,6 @@ class _RegisterFormState extends State<RegisterForm> {
               child: const Text('Register'),
             ),
           ],
-          // Selector<UserManagementViewModel,bool>(selector: (context,value)=> value.existingUser,builder: (context,value,child){},)
         ),
       ),
     );
