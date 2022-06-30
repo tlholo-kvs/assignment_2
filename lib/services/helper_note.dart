@@ -7,28 +7,6 @@ import 'package:assignment2_2022/view_models/user_management_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-void refreshNotesInUI(BuildContext context) async {
-  //Variables to hold my references to provider
-  //to avoid the linting error and just to keep
-  //the code clean
-  final uVm = context.read<UserManagementViewModel>();
-  final nMv = context.read<NoteViewModel>();
-  String response = await nMv.getNotes(uVm.currentUser!.email);
-
-  if (response != 'OK') {
-    locator
-        .get<NavigationAndDialogService>()
-        .showSnackBar(message: response, title: 'Error');
-  } else {
-    locator
-        .get<NavigationAndDialogService>()
-        .showSnackBar(message: 'Data retrieved fromDB', title: 'Success');
-  }
-}
-
-//Do we need this?
-void saveAllNotessInUI(BuildContext context) async {}
-
 void createNewNoteInUI(BuildContext context,
     {required TextEditingController titleController,
     required TextEditingController messageController}) async {
@@ -43,11 +21,18 @@ void createNewNoteInUI(BuildContext context,
     locator.get<NavigationAndDialogService>().showSnackBar(
         message: 'Please enter something in both fields, and then save',
         title: 'Empty fields');
+  }
+  //error handling to make sure the user enters both fields
+  //before saving
+  else if (titleController.text.isEmpty || messageController.text.isEmpty) {
+    locator.get<NavigationAndDialogService>().showSnackBar(
+        message: 'Both fields must have a value', title: 'Empty fields');
   } else {
     Note note = Note(
       title: titleController.text.trim(),
       message: messageController.text.trim(),
     );
+
     if (nMv.notes.contains(note)) {
       locator.get<NavigationAndDialogService>().showSnackBar(
           message:
@@ -63,9 +48,6 @@ void createNewNoteInUI(BuildContext context,
         titleController.text.trim(),
         true,
       );
-
-      titleController.text = '';
-      messageController.text = '';
 
       locator
           .get<NavigationAndDialogService>()

@@ -29,8 +29,6 @@ void createNewUserInUI(
           .get<NavigationAndDialogService>()
           .showSnackBar(message: 'Error', title: result);
     } else {
-      locator.get<NavigationAndDialogService>().showSnackBar(
-          message: 'New User Successfully Created', title: 'Result');
       locator<NavigationAndDialogService>().navigateTo(RouteManager.loginPage);
     }
   }
@@ -54,6 +52,7 @@ Future<void> loginUserInUI(BuildContext context,
           .showSnackBar(message: result, title: 'Result');
     } else {
       nVm.getNotes(email);
+
       locator
           .get<NavigationAndDialogService>()
           .popAndNavigateTo(RouteManager.noteListPage);
